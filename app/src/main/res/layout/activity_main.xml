@@ -10,14 +10,19 @@
 
 
     <com.example.mycustomview.MyTextView1
-
         xmlns:mycustom="http://schemas.android.com/apk/res-auto"
-
         android:padding="10dp"
         mycustom:titleText="asdfg测试测试"
         mycustom:titleTextColor="@color/colorAccent"
         mycustom:titleTextSize="40sp"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.example.mycustomview.MyView2
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:backColor="@color/colorPrimaryDark"
+        app:circleColor="@color/colorAccent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
 
