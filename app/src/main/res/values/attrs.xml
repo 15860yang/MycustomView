@@ -22,5 +22,15 @@
 
     </declare-styleable>
 
+    <declare-styleable name="MyImageAndTitleView">
+
+        <attr name="myBackColor" format="color"/>
+        <attr name="image" format="reference"/>
+        <attr name="imageTitle" format="string"/>
+        <attr name="imageTitleColor" format="color"/>
+        <attr name="imageTitleSize" format="dimension"/>
+
+    </declare-styleable>
+
 
 </resources>

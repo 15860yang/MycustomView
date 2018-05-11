@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Message
 import android.util.Log
+import android.view.View
 import android.webkit.WebView
 import android.widget.TextView
 import com.zzhoujay.richtext.RichText
@@ -17,9 +18,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-//        tv = findViewById(R.id.main_TextView)
-//
-//        tv!!.loadUrl("https://www.jianshu.com/p/e0f7113cfc06")
 
     }
 }
