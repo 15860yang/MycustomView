@@ -31,6 +31,19 @@
         <attr name="imageTitleSize" format="dimension"/>
 
     </declare-styleable>
+    
+    
+    <declare-styleable name="MyProgressView">
+        <attr name="myProgressBackColor" format="color"/>
+        <attr name="guageModel">
+            <enum name="Circle" value="1"/>
+            <enum name="Five_Point_Star" value="2"/>
+        </attr>
+
+        <attr name="guageColor" format="color"/>
+        <attr name="lineColor" format="color"/>
+
+    </declare-styleable>
 
 
 </resources>

@@ -9,57 +9,82 @@
     tools:context="com.example.mycustomview.MainActivity">
 
 
-    <com.example.mycustomview.MyTextView1
-        xmlns:mycustom="http://schemas.android.com/apk/res-auto"
-        android:padding="10dp"
-        mycustom:titleText="asdfg测试测试"
-        mycustom:titleTextColor="@color/colorAccent"
-        mycustom:titleTextSize="40sp"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent">
 
-    <com.example.mycustomview.MyView2
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        app:backColor="@color/colorPrimaryDark"
-        app:circleColor="@color/colorAccent"
-        android:layout_width="wrap_content"
-        android:layout_height="100dp" />
+        <com.example.mycustomview.MyProgressView
+            android:id="@+id/main_MyProgressView"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
+            app:guageColor="#00ff00"
+            app:guageModel="Circle"
+            app:lineColor="@color/colorPrimary"
+            app:myProgressBackColor="#6c6c6c" />
 
-    <com.example.mycustomview.MyImageAndTitleView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingBottom="20dp"
-        android:paddingTop="20dp"
-        app:image="@mipmap/ic_launcher"
-        app:imageTitle="测试测试测试"
-        app:imageTitleColor="@color/colorAccent"
-        app:imageTitleSize="40sp"
-        />
-    <com.example.mycustomview.MyImageAndTitleView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:paddingBottom="20dp"
-        android:paddingTop="20dp"
-        app:myBackColor="@color/colorPrimaryDark"
-        app:image="@mipmap/ic_launcher"
-        app:imageTitle="测试测试测试"
-        app:imageTitleColor="@color/colorAccent"
-        app:imageTitleSize="40sp"
-        />
-    <com.example.mycustomview.MyImageAndTitleView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingBottom="20dp"
-        android:paddingTop="20dp"
-        app:myBackColor="#6c6c6c"
-        app:image="@mipmap/ic_launcher"
-        app:imageTitle="测试测sdasdsadasfasdasdasfasasdas试测试"
-        app:imageTitleColor="@color/colorAccent"
-        app:imageTitleSize="40sp"
-        />
+
+
+        <com.example.mycustomview.MyTextView1
+            xmlns:mycustom="http://schemas.android.com/apk/res-auto"
+            android:padding="10dp"
+            android:visibility="gone"
+            mycustom:titleText="asdfg测试测试"
+            mycustom:titleTextColor="@color/colorAccent"
+            mycustom:titleTextSize="40sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.example.mycustomview.MyView2
+            android:visibility="gone"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            app:backColor="@color/colorPrimaryDark"
+            app:circleColor="@color/colorAccent"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp" />
+
+        <com.example.mycustomview.MyImageAndTitleView
+            android:visibility="gone"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp"
+            app:image="@mipmap/ic_launcher"
+            app:imageTitle="测试测试测试"
+            app:imageTitleColor="@color/colorAccent"
+            app:imageTitleSize="40sp"
+            />
+        <com.example.mycustomview.MyImageAndTitleView
+            android:visibility="gone"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp"
+            app:myBackColor="@color/colorPrimaryDark"
+            app:image="@mipmap/ic_launcher"
+            app:imageTitle="测试测试测试"
+            app:imageTitleColor="@color/colorAccent"
+            app:imageTitleSize="40sp"
+            />
+        <com.example.mycustomview.MyImageAndTitleView
+            android:visibility="gone"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp"
+            app:myBackColor="#6c6c6c"
+            app:image="@mipmap/ic_launcher"
+            app:imageTitle="测试测sdasdsadasfasdasdasfasasdas试测试"
+            app:imageTitleColor="@color/colorAccent"
+            app:imageTitleSize="40sp"
+            />
+    </LinearLayout>
 
 
 </LinearLayout>

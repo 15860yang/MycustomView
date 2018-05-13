@@ -19,5 +19,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        var progressView = findViewById<MyProgressView>(R.id.main_MyProgressView)
+        progressView!!.setProgressChangeListener(object :MyProgressView.MyProgressListener {
+            override fun moveEnd(progress: MyProgressView?) {
+
+            }
+
+            override fun moveStart(progress: MyProgressView?) {
+
+            }
+
+            override fun moveing(progress: MyProgressView?) {
+
+            }
+        })
     }
 }
