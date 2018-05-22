@@ -14,12 +14,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <com.example.mycustomview.QQ_message_drag_effect
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
         <com.example.mycustomview.Canvee_Test1
             android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"/>
         <com.example.mycustomview.Canvee_Test2
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"/>
