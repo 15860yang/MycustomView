@@ -1,4 +1,4 @@
-package com.example.mycustomview;
+package com.example.mycustomview.MyView;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -9,10 +9,11 @@ import android.graphics.Rect;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.mycustomview.R;
 
 /**
  * Created by 杨豪 on 2018/5/12.
@@ -56,7 +57,7 @@ public class MyProgressView extends View {
     public MyProgressView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        TypedArray array = context.obtainStyledAttributes(attrs,R.styleable.MyProgressView);
+        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.MyProgressView);
         for(int i = 0;i < array.getIndexCount(); i++){
             int attr = array.getIndex(i);
             switch (attr){

@@ -14,47 +14,83 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <Button
+            android:text="点击"
+            android:id="@+id/main_useKeyFrameViewBt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/main_useKeyFrameViewIv"
+            android:padding="100dp"
+            android:src="@drawable/test_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <com.example.mycustomview.MyView.useObjectAnimatorTOChangeMyView
+            android:visibility="gone"
+            android:id="@+id/main_useObjectAnimatorView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+        <com.example.mycustomview.MyView.MyPropertyAnimatorCircleView
+            android:visibility="gone"
+            android:id="@+id/main_Circle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:visibility="gone"
+            android:id="@+id/main_PropertyBt"
+            android:text="这是属性动画"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:visibility="gone"
             android:id="@+id/main_Bt"
             android:text="四合一动sadsadasdsadsafa画"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <ImageView
+            android:visibility="gone"
             android:id="@+id/main_Iv"
             android:src="@drawable/test_photo"
             android:layout_width="wrap_content"
             android:layout_height="400dp" />
 
 
-        <com.example.mycustomview.QQ_message_drag_effect
+        <com.example.mycustomview.MyView.QQ_message_drag_effect
             android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <com.example.mycustomview.Canvee_Test1
+        <com.example.mycustomview.MyView.Canvee_Test1
             android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"/>
-        <com.example.mycustomview.Canvee_Test2
+        <com.example.mycustomview.MyView.Canvee_Test2
             android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"/>
 
-        <com.example.mycustomview.Paint之ColorMatrix
+        <com.example.mycustomview.MyView.Paint之ColorMatrix
             android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <com.example.mycustomview.My_Bei_Sai_Er_Qu_Xian00
+        <com.example.mycustomview.MyView.My_Bei_Sai_Er_Qu_Xian00
             android:visibility="gone"
             android:id="@+id/myview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             />
 
-        <com.example.mycustomview.MyProgressView
+        <com.example.mycustomview.MyView.MyProgressView
             android:visibility="gone"
             android:id="@+id/main_MyProgressView"
             android:layout_width="wrap_content"
@@ -67,7 +103,7 @@
             app:lineColor="@color/colorPrimary"
             app:myProgressBackColor="#6c6c6c" />
 
-        <com.example.mycustomview.MyTextView1
+        <com.example.mycustomview.MyView.MyTextView1
             xmlns:mycustom="http://schemas.android.com/apk/res-auto"
             android:padding="10dp"
             android:visibility="gone"
@@ -77,7 +113,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <com.example.mycustomview.MyView2
+        <com.example.mycustomview.MyView.MyView2
             android:visibility="gone"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             app:backColor="@color/colorPrimaryDark"
@@ -85,7 +121,7 @@
             android:layout_width="wrap_content"
             android:layout_height="100dp" />
 
-        <com.example.mycustomview.MyImageAndTitleView
+        <com.example.mycustomview.MyView.MyImageAndTitleView
             android:visibility="gone"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
@@ -97,7 +133,7 @@
             app:imageTitleColor="@color/colorAccent"
             app:imageTitleSize="40sp"
             />
-        <com.example.mycustomview.MyImageAndTitleView
+        <com.example.mycustomview.MyView.MyImageAndTitleView
             android:visibility="gone"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
@@ -110,7 +146,7 @@
             app:imageTitleColor="@color/colorAccent"
             app:imageTitleSize="40sp"
             />
-        <com.example.mycustomview.MyImageAndTitleView
+        <com.example.mycustomview.MyView.MyImageAndTitleView
             android:visibility="gone"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"

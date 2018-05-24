@@ -1,4 +1,4 @@
-package com.example.mycustomview;
+package com.example.mycustomview.MyView;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

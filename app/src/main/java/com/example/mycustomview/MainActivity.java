@@ -1,7 +1,12 @@
 package com.example.mycustomview;
 
-import android.animation.Animator;
 import android.animation.ArgbEvaluator;
+import android.animation.Keyframe;
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
+import android.animation.TimeInterpolator;
+import android.animation.TypeEvaluator;
+import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -10,13 +15,13 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
-import android.view.animation.CycleInterpolator;
-import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
+
+import com.example.mycustomview.MyView.MyPropertyAnimatorCircleView;
+import com.example.mycustomview.MyView.useObjectAnimatorTOChangeMyView;
 
 /**
  * Created by 杨豪 on 2018/5/22.
@@ -28,15 +33,118 @@ public class MainActivity extends AppCompatActivity{
     private ArgbEvaluator argbEvaluator;
     private ImageView iv;
 
+    private Button propertyBt;//属性动画按钮
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         setColorChange();
+        setPropertyAnimator();
+        setPropertyView();
+
+        useObjectAnimatorTOChangeMyView();
+
+        useKeyFrameTOChangeMyView();
+    }
+
+    private void useKeyFrameTOChangeMyView() {
+        Button button = findViewById(R.id.main_useKeyFrameViewBt);
+        ImageView imageView = findViewById(R.id.main_useKeyFrameViewIv);
+        Keyframe keyframe = Keyframe.ofFloat(0,0);
+        Keyframe keyframe0 = Keyframe.ofFloat(0.3f,-200);
+        Keyframe keyframe1 = Keyframe.ofFloat(0.5f,200);
+        Keyframe keyframe2 = Keyframe.ofFloat(1f,100);
+        PropertyValuesHolder holder = PropertyValuesHolder.ofKeyframe("translationY",keyframe,keyframe0
+        ,keyframe1,keyframe2);
+
+        final ObjectAnimator animator = ObjectAnimator.ofPropertyValuesHolder(imageView,holder);
+        animator.setDuration(3000);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                animator.start();
+            }
+        });
+    }
 
 
+    /**
+     * object的基本使用
+     *
+     */
+    private void useObjectAnimatorTOChangeMyView() {
+        useObjectAnimatorTOChangeMyView view = findViewById(R.id.main_useObjectAnimatorView);
+        final ObjectAnimator objectAnimator = ObjectAnimator.ofInt(view,"radius",0,100,200,300);
 
+        objectAnimator.setDuration(3000);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                objectAnimator.start();
+            }
+        });
+
+    }
+
+
+    private void setPropertyView() {
+        final MyPropertyAnimatorCircleView circleView = findViewById(R.id.main_Circle);
+        final ValueAnimator animator = ValueAnimator.ofObject(new MyEvaluator(),0,100);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                circleView.setRadius((Integer) animation.getAnimatedValue());
+                circleView.invalidate();
+            }
+        });
+        circleView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                animator.start();
+            }
+        });
+    }
+    //给按钮设置属性动画
+    void setPropertyAnimator(){
+        propertyBt = findViewById(R.id.main_PropertyBt);
+        final ValueAnimator animator = ValueAnimator.ofInt(0,400,100);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                int i = (Integer) animation.getAnimatedValue();
+                propertyBt.layout(i,i,i+propertyBt.getWidth(),i+propertyBt.getHeight());
+            }
+        });
+        animator.setDuration(3000);
+        animator.setInterpolator(new TimeInterpolator() {
+            @Override
+            public float getInterpolation(float input) {
+                float i;
+                if(input > 0.5){
+                    i = (float) (0.01 + (1 - 0.01) * ((input - 0.5) / (1 - 0.01)));
+                }else {
+                    i = (float) (0 + (0.01 - 0) * ((input - 0) / (0.01)));
+                }
+                return i;
+            }
+        });
+        animator.setEvaluator(new TypeEvaluator<Integer>() {
+            @Override
+            public Integer evaluate(float fraction, Integer startValue, Integer endValue) {
+                int startInt = startValue;
+                return (int)(startInt + (fraction) * (endValue - startInt));
+
+            }
+        });
+
+        propertyBt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                animator.start();
+            }
+        });
     }
 
     /**
@@ -87,4 +195,11 @@ public class MainActivity extends AppCompatActivity{
             return true;
         }
     });
+
+    private class MyEvaluator implements TypeEvaluator<Integer> {
+        @Override
+        public Integer evaluate(float fraction, Integer startValue, Integer endValue) {
+            return startValue + (int)((endValue - startValue)*fraction);
+        }
+    }
 }

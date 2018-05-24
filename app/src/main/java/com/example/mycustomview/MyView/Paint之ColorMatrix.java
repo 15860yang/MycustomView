@@ -1,4 +1,4 @@
-package com.example.mycustomview;
+package com.example.mycustomview.MyView;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -11,6 +11,8 @@ import android.graphics.Rect;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
+
+import com.example.mycustomview.R;
 
 /**
  * Created by 杨豪 on 2018/5/18.
@@ -68,7 +70,7 @@ public class Paint之ColorMatrix extends View{
 //        mPaint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
 //        canvas.drawRect(0,0,500,600,mPaint);
 
-        bitmap = BitmapFactory.decodeResource(getContext().getResources(),R.mipmap.ic_launcher);
+        bitmap = BitmapFactory.decodeResource(getContext().getResources(), R.mipmap.ic_launcher);
 
         // 绘制原始位图
         canvas.drawBitmap(bitmap,null,new Rect(0, 0, 500, 500 * bitmap.getHeight() / bitmap.getWidth()), mPaint);

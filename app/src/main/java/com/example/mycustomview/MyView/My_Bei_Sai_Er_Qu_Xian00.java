@@ -1,4 +1,4 @@
-package com.example.mycustomview;
+package com.example.mycustomview.MyView;
 
 import android.animation.ValueAnimator;
 import android.content.Context;

@@ -1,4 +1,4 @@
-package com.example.mycustomview;
+package com.example.mycustomview.MyView;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -9,6 +9,8 @@ import android.graphics.Rect;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
+
+import com.example.mycustomview.R;
 
 /**
  * Created by 杨豪 on 2018/5/5.
@@ -34,7 +36,7 @@ public class MyView2 extends View {
         super(context, attrs, defStyleAttr);
 
         //获取布局文件属性的值
-        TypedArray typedArray = context.obtainStyledAttributes(attrs,R.styleable.MyView2);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.MyView2);
         int n = typedArray.getIndexCount();
         for(int i = 0;i < n ;i++){
             int attr = typedArray.getIndex(i);

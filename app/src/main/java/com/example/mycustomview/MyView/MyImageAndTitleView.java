@@ -1,4 +1,4 @@
-package com.example.mycustomview;
+package com.example.mycustomview.MyView;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -16,6 +16,8 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+
+import com.example.mycustomview.R;
 
 /**
  * Created by 杨豪 on 2018/5/10.
@@ -49,7 +51,7 @@ public class MyImageAndTitleView extends View {
 
     public MyImageAndTitleView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        TypedArray typedArray = context.obtainStyledAttributes(attrs,R.styleable.MyImageAndTitleView,
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.MyImageAndTitleView,
                 defStyleAttr,0);
         for(int i = 0;i< typedArray.getIndexCount();i++){
             int attr = typedArray.getIndex(i);
