@@ -14,27 +14,38 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <Button
+            android:id="@+id/main_useAnimatorSetBt"
+            android:text="动画"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/main_useAnimatorSetIv"
+            android:src="@drawable/test_photo"
+            android:layout_width="150dp"
+            android:layout_height="100dp" />
+
 
         <Button
+            android:visibility="gone"
             android:text="点击"
             android:id="@+id/main_useKeyFrameViewBt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <ImageView
+            android:visibility="gone"
             android:id="@+id/main_useKeyFrameViewIv"
             android:padding="100dp"
             android:src="@drawable/test_photo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-
         <com.example.mycustomview.MyView.useObjectAnimatorTOChangeMyView
             android:visibility="gone"
             android:id="@+id/main_useObjectAnimatorView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-
 
         <com.example.mycustomview.MyView.MyPropertyAnimatorCircleView
             android:visibility="gone"

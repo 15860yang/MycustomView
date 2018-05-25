@@ -1,5 +1,7 @@
 package com.example.mycustomview;
 
+import android.animation.Animator;
+import android.animation.AnimatorSet;
 import android.animation.ArgbEvaluator;
 import android.animation.Keyframe;
 import android.animation.ObjectAnimator;
@@ -7,6 +9,7 @@ import android.animation.PropertyValuesHolder;
 import android.animation.TimeInterpolator;
 import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -43,12 +46,54 @@ public class MainActivity extends AppCompatActivity{
         setColorChange();
         setPropertyAnimator();
         setPropertyView();
-
         useObjectAnimatorTOChangeMyView();
-
         useKeyFrameTOChangeMyView();
+
+        useAnimatorSetTochangeView();
+
     }
 
+    private void useAnimatorSetTochangeView() {
+        Button button = findViewById(R.id.main_useAnimatorSetBt);
+        ImageView imageView = findViewById(R.id.main_useAnimatorSetIv);
+        ObjectAnimator animator = ObjectAnimator.ofFloat(imageView,"translationY",0,800,400,600);
+        animator.setDuration(1000);
+        ObjectAnimator animator2 = ObjectAnimator.ofArgb(button,"backgroundColor",Color.RED,Color.GREEN,Color.BLUE);
+        animator2.setDuration(2000);
+        ObjectAnimator animator1 = ObjectAnimator.ofFloat(imageView,"translationX",0,300,150,350);
+        animator1.setDuration(2000);
+        final AnimatorSet animatorSet = new AnimatorSet();
+//        animatorSet.play(animator).after(1000);
+//        animatorSet.play(animator2).after(animator);
+//        animatorSet.play(animator1).with(animator2);
+//
+//        animatorSet.play(animator1).with(animator2).after(animator).after(1000);
+
+//        AnimatorSet.Builder builder = animatorSet.play(animator1);
+//        builder.with(animator2);
+//        builder.after(animator);
+//        builder.after(1000);
+
+
+        animator2.setStartDelay(1000);
+        animatorSet.play(animator).with(animator2);
+
+        animatorSet.setStartDelay(1000);
+
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                animatorSet.start();
+            }
+        });
+    }
+
+
+    /**
+     * 使用关键帧去构建动画
+     *
+     */
     private void useKeyFrameTOChangeMyView() {
         Button button = findViewById(R.id.main_useKeyFrameViewBt);
         ImageView imageView = findViewById(R.id.main_useKeyFrameViewIv);
@@ -59,7 +104,14 @@ public class MainActivity extends AppCompatActivity{
         PropertyValuesHolder holder = PropertyValuesHolder.ofKeyframe("translationY",keyframe,keyframe0
         ,keyframe1,keyframe2);
 
-        final ObjectAnimator animator = ObjectAnimator.ofPropertyValuesHolder(imageView,holder);
+        Keyframe keyframe3 = Keyframe.ofFloat(0,0);
+        Keyframe keyframe4 = Keyframe.ofFloat(0.3f,-200);
+        Keyframe keyframe5 = Keyframe.ofFloat(0.5f,200);
+        Keyframe keyframe6 = Keyframe.ofFloat(1f,100);
+        PropertyValuesHolder holder1 = PropertyValuesHolder.ofKeyframe("translationX",keyframe3,keyframe4
+                ,keyframe5,keyframe6);
+
+        final ObjectAnimator animator = ObjectAnimator.ofPropertyValuesHolder(imageView,holder,holder1);
         animator.setDuration(3000);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +120,6 @@ public class MainActivity extends AppCompatActivity{
             }
         });
     }
-
 
     /**
      * object的基本使用
@@ -87,7 +138,6 @@ public class MainActivity extends AppCompatActivity{
         });
 
     }
-
 
     private void setPropertyView() {
         final MyPropertyAnimatorCircleView circleView = findViewById(R.id.main_Circle);
