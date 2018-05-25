@@ -8,8 +8,78 @@
     android:orientation="vertical"
     tools:context="com.example.mycustomview.MainActivity">
 
+    <GridLayout
+        android:id="@+id/main_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnCount="3"
+        android:layoutAnimation="@anim/my_gridlayoutanimation"
+        android:verticalSpacing="10dp">
+
+        <Button
+            android:background="@color/colorAccent"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content" />
+        <Button
+            android:background="@color/colorPrimaryDark"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content" />
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="wrap_content" />
+        <Button
+            android:background="@color/colorPrimary"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content" />
+        <Button
+            android:background="@color/colorAccent"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content" />
+        <Button
+            android:background="@color/colorPrimaryDark"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content" />
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="wrap_content" />
+        <Button
+            android:background="@color/colorPrimary"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content" />
+        <Button
+            android:background="@color/colorAccent"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content" />
+        <Button
+            android:background="@color/colorPrimaryDark"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content" />
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="wrap_content" />
+        <Button
+            android:background="@color/colorPrimary"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content" />
+        <Button
+            android:background="@color/colorAccent"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content" />
+        <Button
+            android:background="@color/colorPrimaryDark"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content" />
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="wrap_content" />
+        <Button
+            android:background="@color/colorPrimary"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content" />
+    </GridLayout>
 
     <LinearLayout
+        android:visibility="gone"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

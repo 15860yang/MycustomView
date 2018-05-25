@@ -18,10 +18,14 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.example.mycustomview.MyView.MyPropertyAnimatorCircleView;
 import com.example.mycustomview.MyView.useObjectAnimatorTOChangeMyView;
@@ -48,10 +52,29 @@ public class MainActivity extends AppCompatActivity{
         setPropertyView();
         useObjectAnimatorTOChangeMyView();
         useKeyFrameTOChangeMyView();
-
         useAnimatorSetTochangeView();
 
+        setLinearAnimation();
+
+
+
+
     }
+
+    /**
+     * 为布局设置动画
+     */
+    private void setLinearAnimation() {
+
+        Animation animation = AnimationUtils.loadAnimation(this,R.anim.my_linear_anim);
+
+        LayoutAnimationController controller = new LayoutAnimationController(animation,1);
+        controller.setOrder(LayoutAnimationController.ORDER_NORMAL);
+
+        GridLayout linearLayout = findViewById(R.id.main_layout);
+        linearLayout.setLayoutAnimation(controller);
+    }
+
 
     private void useAnimatorSetTochangeView() {
         Button button = findViewById(R.id.main_useAnimatorSetBt);
@@ -88,8 +111,6 @@ public class MainActivity extends AppCompatActivity{
             }
         });
     }
-
-
     /**
      * 使用关键帧去构建动画
      *
