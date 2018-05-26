@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<set xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <objectAnimator
+        android:propertyName="translateX"
+        android:duration="1000"
+        android:valueFrom="-50"
+        android:valueTo="1"
+        >
+
+    </objectAnimator>
+    <objectAnimator
+        android:valueType="intType"
+        android:duration="1000"
+        android:valueFrom="0"
+        android:valueTo="1"
+        android:propertyName="alpha"
+
+        />
+
+
+
+</set>
+

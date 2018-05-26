@@ -1,19 +1,23 @@
 package com.example.mycustomview;
 
 import android.animation.Animator;
+import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.animation.ArgbEvaluator;
 import android.animation.Keyframe;
+import android.animation.LayoutTransition;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.animation.TimeInterpolator;
 import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -42,6 +46,7 @@ public class MainActivity extends AppCompatActivity{
 
     private Button propertyBt;//属性动画按钮
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,9 +61,57 @@ public class MainActivity extends AppCompatActivity{
 
         setLinearAnimation();
 
+        setLinearAnimationMore();
 
 
+    }
+    static int dis = 0;
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void setLinearAnimationMore() {
+        final LinearLayout layout = findViewById(R.id.main_Ll);
+        Button add = findViewById(R.id.main_ll_Add);
+        final Button remove = findViewById(R.id.main_ll_Remove);
 
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Button button = new Button(getBaseContext());
+                button.setText("新加button"+ dis++);
+                button.setAlpha(0);
+                layout.addView(button,2);
+            }
+        });
+        remove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int cnt = layout.getChildCount();
+                if(cnt > 2){
+                    layout.removeViewAt(2);
+                }
+            }
+        });
+
+        LayoutTransition transition = new LayoutTransition();
+
+        //设置新子项进场动画
+        ObjectAnimator animator = ObjectAnimator.ofFloat(null, "translationX", -1000f, 0f);
+        ObjectAnimator animator1 = ObjectAnimator.ofArgb(null,"backgroundColor",Color.BLUE,Color.GREEN);
+        ObjectAnimator animator2 = ObjectAnimator.ofFloat(null,"alpha",0,1);
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.play(animator).with(animator1).with(animator2);
+        transition.setAnimator(LayoutTransition.APPEARING,animatorSet);
+
+        //设置新子项出场动画
+        ObjectAnimator animator3 = ObjectAnimator.ofFloat(null, "translationX",  0f,-1000f);
+        ObjectAnimator animator4 = ObjectAnimator.ofArgb(null,"backgroundColor",Color.GREEN,Color.BLUE);
+        ObjectAnimator animator5 = ObjectAnimator.ofFloat(null,"alpha",1,0);
+        AnimatorSet animatorSet1 = new AnimatorSet();
+        animatorSet1.play(animator3).with(animator4).with(animator5);
+        transition.setAnimator(LayoutTransition.DISAPPEARING, animatorSet1);
+
+        //设置动画时长
+        transition.setDuration(3000);
+        layout.setLayoutTransition(transition);
     }
 
     /**
@@ -74,8 +127,6 @@ public class MainActivity extends AppCompatActivity{
         GridLayout linearLayout = findViewById(R.id.main_layout);
         linearLayout.setLayoutAnimation(controller);
     }
-
-
     private void useAnimatorSetTochangeView() {
         Button button = findViewById(R.id.main_useAnimatorSetBt);
         ImageView imageView = findViewById(R.id.main_useAnimatorSetIv);
