@@ -8,8 +8,30 @@
     android:orientation="vertical"
     tools:context="com.example.mycustomview.MainActivity">
 
+    <Button
+
+        android:visibility="gone"
+        android:id="@+id/main_translateBt"
+        android:text="11111"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:visibility="gone"
+        android:id="@+id/main_Bt1"
+        android:text="大大大"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <com.example.mycustomview.MyViewGroup.DropDownMenu
+
+        android:id="@+id/main_myDropMenuView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 
     <LinearLayout
+        android:visibility="gone"
         android:id="@+id/main_Ll"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -27,11 +49,6 @@
             android:layout_height="wrap_content" />
 
     </LinearLayout>
-
-
-
-
-
     <GridLayout
         android:visibility="gone"
         android:id="@+id/main_layout"

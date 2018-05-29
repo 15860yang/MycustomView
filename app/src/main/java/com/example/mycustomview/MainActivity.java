@@ -21,6 +21,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
@@ -30,9 +31,13 @@ import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.mycustomview.MyView.MyPropertyAnimatorCircleView;
 import com.example.mycustomview.MyView.useObjectAnimatorTOChangeMyView;
+import com.example.mycustomview.MyViewGroup.DropDownMenu;
+
+import java.util.ArrayList;
 
 /**
  * Created by 杨豪 on 2018/5/22.
@@ -40,11 +45,19 @@ import com.example.mycustomview.MyView.useObjectAnimatorTOChangeMyView;
 
 public class MainActivity extends AppCompatActivity{
 
+    private static final String TAG = "MainActivity";
     private Button bt;
     private ArgbEvaluator argbEvaluator;
     private ImageView iv;
 
     private Button propertyBt;//属性动画按钮
+
+    DropDownMenu menu;
+    ArrayList<String> title;
+    ArrayList<ArrayList<String>> arrayLists;
+    TextView view;
+
+
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -52,19 +65,88 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setColorChange();
-        setPropertyAnimator();
-        setPropertyView();
-        useObjectAnimatorTOChangeMyView();
-        useKeyFrameTOChangeMyView();
-        useAnimatorSetTochangeView();
+//        setColorChange();
+//        setPropertyAnimator();
+//        setPropertyView();
+//        useObjectAnimatorTOChangeMyView();
+//        useKeyFrameTOChangeMyView();
+//        useAnimatorSetTochangeView();
+//        setLinearAnimation();
+//        setLinearAnimationMore();
+        setMyDropMenuView();
 
-        setLinearAnimation();
-
-        setLinearAnimationMore();
-
+//        TestTranslate();
 
     }
+
+    private void TestTranslate() {
+        Button b = findViewById(R.id.main_translateBt);
+        final Button button = findViewById(R.id.main_Bt1);
+        final Animation animation = AnimationUtils.loadAnimation(this,R.anim.outtranslate);
+        animation.setDuration(1000);
+        animation.setFillAfter(true);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                button.startAnimation(animation);
+            }
+        });
+    }
+
+    private void setMyDropMenuView() {
+        menu = findViewById(R.id.main_myDropMenuView);
+        title = new ArrayList<>();
+        title.add("班级");
+        title.add("性别");
+        title.add("年龄");
+        arrayLists = new ArrayList<>();
+        ArrayList<String> arrayList1 = new ArrayList<>();
+        arrayList1.add("一年级");
+        arrayList1.add("二年级");
+        arrayList1.add("三年级");
+        arrayList1.add("四年级");
+        arrayList1.add("五年级");
+        arrayList1.add("六年级");
+        arrayList1.add("七年级");
+        arrayList1.add("八年级");
+        arrayList1.add("九年级");
+        arrayList1.add("十年级");
+        arrayList1.add("十一年级");
+        arrayList1.add("十二年级");
+        arrayLists.add(arrayList1);
+        ArrayList<String> arrayList2 = new ArrayList<>();
+        arrayList2.add("男");
+        arrayList2.add("女");
+        arrayList2.add("保密");
+        arrayLists.add(arrayList2);
+        ArrayList<String> arrayList3 = new ArrayList<>();
+        arrayList3.add("<= 6");
+        arrayList3.add("6 - 12");
+        arrayList3.add("12 - 18");
+        arrayList3.add("18 - 22");
+        arrayList3.add("22 - 30");
+        arrayLists.add(arrayList3);
+
+        view = new TextView(this);
+        view.setGravity(Gravity.CENTER);
+        view.setTextColor(Color.BLACK);
+        view.setTextSize(50);
+        view.setText("主页面");
+
+        menu.setMyDropMenuDate(title,arrayLists,view);
+
+        menu.setListener(new DropDownMenu.SelectListener() {
+            @Override
+            public void slect(int mainPosition, int itemPosition) {
+                Log.d(TAG, "slect: 你选择了第"+ mainPosition+"栏，第"+itemPosition+"项");
+            }
+        });
+    }
+
+
+    /**
+     * 布局动画进阶
+     */
     static int dis = 0;
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void setLinearAnimationMore() {
