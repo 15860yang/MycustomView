@@ -11,6 +11,7 @@ import android.animation.PropertyValuesHolder;
 import android.animation.TimeInterpolator;
 import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
@@ -128,7 +130,8 @@ public class MainActivity extends AppCompatActivity{
         arrayLists.add(arrayList3);
 
         view = new TextView(this);
-        view.setGravity(Gravity.CENTER);
+        view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        view.setGravity(Gravity.BOTTOM);
         view.setTextColor(Color.BLACK);
         view.setTextSize(50);
         view.setText("主页面");
@@ -136,9 +139,12 @@ public class MainActivity extends AppCompatActivity{
         menu.setMyDropMenuDate(title,arrayLists,view);
 
         menu.setListener(new DropDownMenu.SelectListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void slect(int mainPosition, int itemPosition) {
-                Log.d(TAG, "slect: 你选择了第"+ mainPosition+"栏，第"+itemPosition+"项");
+                String s = "slect: 你选择了第"+ mainPosition+"栏，第"+itemPosition+"项";
+                Log.d(TAG, s);
+                view.setText(s);
             }
         });
     }

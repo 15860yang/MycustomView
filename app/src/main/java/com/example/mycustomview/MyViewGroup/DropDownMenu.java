@@ -61,6 +61,8 @@ public class DropDownMenu extends ViewGroup {
 
     private Context context;
 
+    private int selectButtonColor = Color.GREEN;
+
     private int width; // 主体的宽
     private int height; // 主体的高
 
@@ -79,6 +81,7 @@ public class DropDownMenu extends ViewGroup {
             int i1 = msg.arg2;//子项序号
             Button button = (Button) (tabMenuView.getChildAt(i*2));
             button.setText(titleItemList.get(i).get(i1));
+            cancelDropMenuShow();
             if(listener != null){
                 listener.slect(i,i1);
             }
@@ -153,6 +156,17 @@ public class DropDownMenu extends ViewGroup {
         this.container = container;
     }
 
+    /**
+     * 设置按钮背景色
+     */
+    public void setSelectButtonColor(int selectButtonColor) {
+        this.selectButtonColor = selectButtonColor;
+    }
+
+    /**
+     * 设置监听器
+     * @param listener
+     */
     public void setListener(SelectListener listener) {
         this.listener = listener;
     }
@@ -178,8 +192,16 @@ public class DropDownMenu extends ViewGroup {
         //这里具体原因也不清楚
         frameLayout.removeAllViews();
 
+
+        LayoutParams layoutParams = container.getLayoutParams();
+        Log.d(TAG, "setMyDropMenuDate: layoutParms.width = " + layoutParams.width+",height = " + layoutParams.height);
+        
+        
+        container.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));
+
         //添加主布局
         frameLayout.addView(container,0);
+
 
         shadeView.setBackgroundColor(0x88888888);
         //添加遮罩
@@ -264,8 +286,24 @@ public class DropDownMenu extends ViewGroup {
         int titleHeight = tabMenuView.getChildAt(0).getMeasuredHeight();
         getChildAt(0).layout(0,0,width,titleHeight);//设置标题栏位置
         getChildAt(1).layout(0,titleHeight,width,titleHeight+3);
-        getChildAt(2).layout(0,titleHeight+3,width,height);
+        getChildAt(2).layout(0,titleHeight+3,frameLayout.getMeasuredWidth(),frameLayout.getMeasuredHeight());
+
+
+
+
+
+//        Log.d(TAG, "onLayout: 主布局 getX = " + frameLayout.getX() +",getY = " + frameLayout.getY());
+//        Log.d(TAG, "onLayout: 主布局 getHeight = " + frameLayout.getMeasuredHeight() +
+//                ",getWidth = " + frameLayout.getMeasuredWidth());
+//        Log.d(TAG, "onLayout: 主布局的container getX = " + container.getX() + ",getY = " + container.getY());
+//        Log.d(TAG, "onLayout: 主布局的container getHeight = " + container.getMeasuredHeight() +
+//                ",getWidth = " + container.getMeasuredWidth());
+//
+//        Log.d(TAG, "onLayout: 主布局shapeView getX = " + shadeView.getX() +",getY = " + shadeView.getY());
+//        Log.d(TAG, "onLayout: 主布局shapeView getHeight = " + shadeView.getMeasuredHeight() +
+//                ",getWidth = " + shadeView.getMeasuredWidth());
     }
+
 
 
 
@@ -273,12 +311,10 @@ public class DropDownMenu extends ViewGroup {
         Button button = new Button(context);
         button.setText(title);
         button.setGravity(Gravity.CENTER);
-        button.setBackgroundColor(Color.GREEN);
+        button.setBackgroundColor(selectButtonColor);
         button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
-                Toast.makeText(context,"你点击了第"+ position+"个按钮",Toast.LENGTH_SHORT).show();
 
                 shadeView.setVisibility(VISIBLE);
                 Log.d(TAG, "正在展示："+isDropMenuShow+",展示第"+nowShowingMenuPosition+"个");
