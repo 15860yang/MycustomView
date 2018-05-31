@@ -193,11 +193,17 @@ public class DropDownMenu extends ViewGroup {
         frameLayout.removeAllViews();
 
 
-        LayoutParams layoutParams = container.getLayoutParams();
-        Log.d(TAG, "setMyDropMenuDate: layoutParms.width = " + layoutParams.width+",height = " + layoutParams.height);
+        ViewGroup parent = (ViewGroup) container.getParent();
+        if(parent != null){
+            parent.removeView(container);
+        }else {
+            Log.d(TAG, "setMyDropMenuDate: container 的 父布局为空");
+        }
+//        LayoutParams layoutParams = container.getLayoutParams();
+//        Log.d(TAG, "setMyDropMenuDate: layoutParms.width = " + layoutParams.width+",height = " + layoutParams.height);
         
         
-        container.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));
+        container.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT));
 
         //添加主布局
         frameLayout.addView(container,0);
@@ -286,22 +292,12 @@ public class DropDownMenu extends ViewGroup {
         int titleHeight = tabMenuView.getChildAt(0).getMeasuredHeight();
         getChildAt(0).layout(0,0,width,titleHeight);//设置标题栏位置
         getChildAt(1).layout(0,titleHeight,width,titleHeight+3);
+        container.setLayoutParams(new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT,height - titleHeight - 3));
+        container.invalidate();
+
+
         getChildAt(2).layout(0,titleHeight+3,frameLayout.getMeasuredWidth(),frameLayout.getMeasuredHeight());
 
-
-
-
-
-//        Log.d(TAG, "onLayout: 主布局 getX = " + frameLayout.getX() +",getY = " + frameLayout.getY());
-//        Log.d(TAG, "onLayout: 主布局 getHeight = " + frameLayout.getMeasuredHeight() +
-//                ",getWidth = " + frameLayout.getMeasuredWidth());
-//        Log.d(TAG, "onLayout: 主布局的container getX = " + container.getX() + ",getY = " + container.getY());
-//        Log.d(TAG, "onLayout: 主布局的container getHeight = " + container.getMeasuredHeight() +
-//                ",getWidth = " + container.getMeasuredWidth());
-//
-//        Log.d(TAG, "onLayout: 主布局shapeView getX = " + shadeView.getX() +",getY = " + shadeView.getY());
-//        Log.d(TAG, "onLayout: 主布局shapeView getHeight = " + shadeView.getMeasuredHeight() +
-//                ",getWidth = " + shadeView.getMeasuredWidth());
     }
 
 
